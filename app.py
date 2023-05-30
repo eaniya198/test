@@ -103,6 +103,8 @@ def parse_html():
     table = soup.select_one(f'body > div > table:nth-of-type({assign})')
     content = table.select_one('tr:last-child td:last-child').prettify()
 
+
+
     color = has_color(html_content)
 
     template = '''
@@ -172,6 +174,7 @@ def parse_html():
         {% endif %}
         {{ table|safe }}
         <br>
+        <button class="button" onclick="reloadPage()">다음 새로운 문제로!</button>
         <button id="toggleButton" class="button" onclick="toggleContent()">클릭하여 내용 표시</button>
         <div id="content" class="hidden-content" style="display: none;">
             <br>
@@ -179,7 +182,6 @@ def parse_html():
             {{ content|safe }}
         </div>
         <br>
-        <button class="button" onclick="reloadPage()">다음 새로운 문제로!</button>
     </body>
     </html>
     '''
